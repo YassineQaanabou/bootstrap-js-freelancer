@@ -54,19 +54,27 @@ function submitForm(event) {
     if (discountCode == discountCodes[i]) {
       discountFound = true;
 
+      discountCodes.splice(i, 1);
+      console.log(discountCodes);
+
+
       break;
     }
   }
 
   if (discountCode != "" && !discountFound) {
-    document.getElementById("message").innerHTML =
-      "Il codice sconto inserito non è valido";
+
+    document.getElementById("discount_code").classList.add("bg-danger");
+
+    document.getElementById("message").innerHTML =  "Il codice sconto inserito non è valido";
   }
 
-  if (discountFound) {
+  else if (discountFound) {
     price = price * 0.75;
+    document.getElementById("message").innerHTML = "Il codice sconto inserito è valido";
   }
 
   document.getElementById("final_price").innerHTML =
     "Il prezzo é " + price.toFixed(2) + " €";
+
 }
