@@ -49,10 +49,22 @@ function submitForm(event) {
     price = price + hours * 33.6;
   }
 
+  let discountFound = false;
   for (let i = 0; i < discountCodes.length; i++) {
     if (discountCode == discountCodes[i]) {
-      price = price * 0.75;
+      discountFound = true;
+
+      break;
     }
+  }
+
+  if (discountCode != "" && !discountFound) {
+    document.getElementById("message").innerHTML =
+      "Il codice sconto inserito non è valido";
+  }
+
+  if (discountFound) {
+    price = price * 0.75;
   }
 
   document.getElementById("final_price").innerHTML =
