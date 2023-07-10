@@ -23,51 +23,38 @@ rosso.
 Se il codice inserito è valido, dopo aver calcolato il prezzo scontato, eliminare quel codice dall’elenco dei codici sconto disponibili,
  in modo che non sia più utilizzabile.
 */
-let discountCodes= ["YHDNU32" , "JANJC63" , "PWKCN25" , "SJDPO96" , "POCIE24"];
 
-
-function submitForm( event , discountCodes) {
+function submitForm(event) {
   event.preventDefault();
+
+  let discountCodes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
   let workType = document.getElementById("typeOfWork").value;
 
   let hours = parseInt(document.getElementById("hoursRequested").value);
 
-  let discountCode =  document.getElementById("discount_code").value;
+  let discountCode = document.getElementById("discount_code").value;
 
-  let price=0;
+  let price = 0;
 
   console.log("il form funziona");
   console.log(workType);
   console.log(hours);
 
-
-  if (workType == BD) {
-
-    price = price + (hours*20.5);
-
-  } else if (workType == FD) {
-
-    price = price + (hours*15.3);
-
-  } else if (workType == PA){
-
-    price = price + (hours*33.6);
-
+  if (workType == "BD") {
+    price = price + hours * 20.5;
+  } else if (workType == "FD") {
+    price = price + hours * 15.3;
+  } else if (workType == "PA") {
+    price = price + hours * 33.6;
   }
 
-  for (let i=0; i<discountCodes.length; i++) {
-
+  for (let i = 0; i < discountCodes.length; i++) {
     if (discountCode == discountCodes[i]) {
-      price=price*75;
-    } 
+      price = price * 0.75;
+    }
   }
 
-  return price;
-
-
-
-
-
-
+  document.getElementById("final_price").innerHTML =
+    "Il prezzo é " + price.toFixed(2) + " €";
 }
