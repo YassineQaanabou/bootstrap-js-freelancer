@@ -23,11 +23,10 @@ rosso.
 Se il codice inserito è valido, dopo aver calcolato il prezzo scontato, eliminare quel codice dall’elenco dei codici sconto disponibili,
  in modo che non sia più utilizzabile.
 */
+let discountCodes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
 function submitForm(event) {
   event.preventDefault();
-
-  let discountCodes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
   let workType = document.getElementById("typeOfWork").value;
 
@@ -57,24 +56,21 @@ function submitForm(event) {
       discountCodes.splice(i, 1);
       console.log(discountCodes);
 
-
       break;
     }
   }
 
   if (discountCode != "" && !discountFound) {
-
     document.getElementById("discount_code").classList.add("bg-danger");
 
-    document.getElementById("message").innerHTML =  "Il codice sconto inserito non è valido";
-  }
-
-  else if (discountFound) {
+    document.getElementById("message").innerHTML =
+      "Il codice sconto inserito non è valido";
+  } else if (discountFound) {
     price = price * 0.75;
-    document.getElementById("message").innerHTML = "Il codice sconto inserito è valido";
+    document.getElementById("message").innerHTML =
+      "Il codice sconto inserito è valido";
   }
 
   document.getElementById("final_price").innerHTML =
     "Il prezzo é " + price.toFixed(2) + " €";
-
 }
